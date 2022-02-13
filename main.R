@@ -5,7 +5,6 @@ ctx = tercenCtx()
 
 ctx  %>% 
   select(.y, .ci, .ri) %>% 
-  group_by(.ci, .ri) %>%
-  summarise(mean = mean(.y)) %>%
+  mutate(n_cores = parallel::detect_cores()) %>%
   ctx$addNamespace() %>%
   ctx$save()
